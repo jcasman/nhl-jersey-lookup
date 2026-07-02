@@ -21,7 +21,7 @@ uv sync
 uv run python main.py
 ```
 
-Defaults to jersey **#27**. Pass any number as an argument:
+Defaults to jersey **#27**. Because I'm a fan of John Tonelli #27 on the New York Islanders back in the early 80s during the dynasty days. Pass any number as an argument:
 
 ```bash
 uv run python main.py 99
@@ -43,3 +43,4 @@ Found 20 player(s).
 │ ...               │      │            │           │
 └───────────────────┴──────┴────────────┴───────────┘
 ```
+
