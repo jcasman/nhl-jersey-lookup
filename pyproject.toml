@@ -1,0 +1,10 @@
+[project]
+name = "nhl-jersey-lookup"
+version = "0.1.0"
+description = "Find current NHL players by jersey number using the Stats API"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.34.2",
+    "rich>=15.0.0",
+]
