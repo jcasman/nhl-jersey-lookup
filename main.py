@@ -4,6 +4,7 @@ from rich.console import Console
 from rich.table import Table
 
 from nhl_stats_api import fetch_players_by_jersey, fetch_team_map
+from nhl_web_api import fetch_last_game_summary
 
 console = Console()
 
@@ -58,19 +59,28 @@ def main():
         )
     )
 
+    console.print("Fetching last game info for each player...")
+
     results_table = Table(title=f"Current NHL Players Wearing #{jersey_number}")
     results_table.add_column("Player")
     results_table.add_column("Team")
     results_table.add_column("Position")
-    results_table.add_column("Player ID")
+    results_table.add_column("Last Game", overflow="fold")
+    results_table.add_column("Highlights", overflow="fold")
 
     for player in players:
         team_code = team_map.get(player["currentTeamId"], "???")
+        position_code = player["positionCode"]
+        last_game_line, highlights_line = fetch_last_game_summary(
+            player["id"],
+            position_code,
+        )
         results_table.add_row(
             player["fullName"],
             team_code,
-            format_position(player["positionCode"]),
-            str(player["id"]),
+            format_position(position_code),
+            last_game_line,
+            highlights_line,
         )
 
     console.print()
